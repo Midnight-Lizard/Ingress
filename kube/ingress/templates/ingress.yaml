@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    {{- range $key, $value := .Values.annotations }}
+      {{ $key }}: {{ $value | quote }}
+    {{- end }}
+spec:
+  rules:
+    {{- range $service, $hosts := .Values.rules }}
+    {{- range $host, $port := $hosts }}
+    - host: {{ $host | quote }}
+      http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: {{ $service }}
+              servicePort: {{ $port }}
+    {{- end -}}
+    {{- end -}}
+  {{- if .Values.tls }}
+  tls:
+{{ toYaml .Values.tls | indent 4 }}
+  {{- end -}}
