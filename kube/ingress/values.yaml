@@ -4,8 +4,6 @@ rules:
   portal:
     "midnight-lizard.online": 80
     "*.midnight-lizard.online": 80
-  schemes:
-    "schemes.midnight-lizard.online": 80
   identity:
     "identity.midnight-lizard.online": 80
 annotations:
