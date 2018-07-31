@@ -1,5 +1,8 @@
 name: ml-ingress
 enabled: true
+defaultBackend:
+  serviceName: portal
+  servicePort: 80
 rules:
   portal:
     "midnight-lizard.online": 80

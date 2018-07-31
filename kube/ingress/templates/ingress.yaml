@@ -11,6 +11,9 @@ metadata:
       {{ $key }}: {{ $value | quote }}
     {{- end }}
 spec:
+  backend:
+    serviceName: {{ .Values.defaultBackend.serviceName }}
+    servicePort: {{ .Values.defaultBackend.servicePort }}
   rules:
     {{- range $service, $hosts := .Values.rules }}
     {{- range $host, $port := $hosts }}
