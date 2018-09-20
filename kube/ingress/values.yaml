@@ -5,10 +5,10 @@ defaultBackend:
   servicePort: 80
 rules:
   portal:
-    "midnight-lizard.online": 80
-    "*.midnight-lizard.online": 80
+    "midnight-lizard.org": 80
+    "*.midnight-lizard.org": 80
   identity:
-    "identity.midnight-lizard.online": 80
+    "identity.midnight-lizard.org": 80
 annotations:
   kubernetes.io/ingress.global-static-ip-name: ml-static-ip
   ingress.kubernetes.io/rewrite-target: /
