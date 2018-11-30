@@ -9,6 +9,10 @@ rules:
     "*.midnight-lizard.org": 80
   identity:
     "identity.midnight-lizard.org": 80
+  schemes-querier:
+    "schemes-querier.midnight-lizard.org": 80
+  schemes-commander:
+    "schemes-commander.midnight-lizard.org": 80
 annotations:
   kubernetes.io/ingress.global-static-ip-name: ml-static-ip
   ingress.kubernetes.io/rewrite-target: /
