@@ -16,8 +16,13 @@ rules:
 annotations:
   kubernetes.io/ingress.global-static-ip-name: ml-static-ip
   ingress.kubernetes.io/rewrite-target: /
+  certmanager.k8s.io/issuer: "letsencrypt-staging"
+  certmanager.k8s.io/acme-challenge-type: http01
 tls:
-  # Secrets must be manually created in the namespace.
-  # - secretName: chart-example-tls
-  #   hosts:
-  #     - chart-example.local
+  - secretName: ml-tls
+    hosts:
+      - midnight-lizard.org
+      - www.midnight-lizard.org
+      - identity.midnight-lizard.org
+      - schemes-querier.midnight-lizard.org
+      - schemes-commander.midnight-lizard.org
