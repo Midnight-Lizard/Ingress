@@ -1,0 +1,19 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: ml-tls-cert-portal
+spec:
+  secretName: ml-tls-cert-portal
+  dnsNames:
+    - midnight-lizard.org
+    - www.midnight-lizard.org
+  acme:
+    config:
+    - http01:
+        ingress: ml-ingress
+      domains:
+        - midnight-lizard.org
+        - www.midnight-lizard.org
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer

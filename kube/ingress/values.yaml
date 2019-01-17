@@ -6,7 +6,6 @@ defaultBackend:
 rules:
   portal:
     "midnight-lizard.org": 80
-    "*.midnight-lizard.org": 80
   identity:
     "identity.midnight-lizard.org": 80
   schemes-querier:
@@ -16,13 +15,17 @@ rules:
 annotations:
   kubernetes.io/ingress.global-static-ip-name: ml-static-ip
   ingress.kubernetes.io/rewrite-target: /
-  certmanager.k8s.io/issuer: "letsencrypt-staging"
-  certmanager.k8s.io/acme-challenge-type: http01
+  kubernetes.io/ingress.class: "gce"
 tls:
-  - secretName: ml-tls
-    hosts:
-      - midnight-lizard.org
-      - www.midnight-lizard.org
-      - identity.midnight-lizard.org
-      - schemes-querier.midnight-lizard.org
-      - schemes-commander.midnight-lizard.org
+  - hosts:
+    - midnight-lizard.org
+    secretName: ml-tls-cert-portal
+  - hosts:
+    - identity.midnight-lizard.org
+    secretName: ml-tls-cert-identity
+  - hosts:
+    - schemes-querier.midnight-lizard.org
+    secretName: ml-tls-cert-schemes-querier
+  - hosts:
+    - schemes-commander.midnight-lizard.org
+    secretName: ml-tls-cert-schemes-commander

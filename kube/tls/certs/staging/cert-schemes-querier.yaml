@@ -1,0 +1,17 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: ml-tls-cert-schemes-querier
+spec:
+  secretName: ml-tls-cert-schemes-querier
+  dnsNames:
+    - schemes-querier.midnight-lizard.org
+  acme:
+    config:
+    - http01:
+        ingress: ml-ingress
+      domains:
+        - schemes-querier.midnight-lizard.org
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer

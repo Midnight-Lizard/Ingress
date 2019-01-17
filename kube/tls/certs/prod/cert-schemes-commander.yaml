@@ -1,0 +1,17 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: ml-tls-cert-schemes-commander
+spec:
+  secretName: ml-tls-cert-schemes-commander
+  dnsNames:
+    - schemes-commander.midnight-lizard.org
+  acme:
+    config:
+    - http01:
+        ingress: ml-ingress
+      domains:
+        - schemes-commander.midnight-lizard.org
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
