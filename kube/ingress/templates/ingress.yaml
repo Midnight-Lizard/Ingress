@@ -15,15 +15,15 @@ spec:
     serviceName: {{ .Values.defaultBackend.serviceName }}
     servicePort: {{ .Values.defaultBackend.servicePort }}
   rules:
-    {{- range $service, $hosts := .Values.rules }}
-    {{- range $host, $port := $hosts }}
+    {{- range $host, $services := .Values.rules }}
+    {{- range $serviceName, $serviceParams := $services }}
     - host: {{ $host | quote }}
       http:
         paths:
-          - path: /*
+          - path: {{ $serviceParams.path | quote }}
             backend:
-              serviceName: {{ $service }}
-              servicePort: {{ $port }}
+              serviceName: {{ $serviceName }}
+              servicePort: {{ $serviceParams.port }}
     {{- end -}}
     {{- end -}}
   {{- if .Values.tls }}

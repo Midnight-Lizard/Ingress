@@ -1,21 +1,29 @@
 name: ml-ingress
-enabled: true
-defaultBackend:
-  serviceName: portal
-  servicePort: 80
-rules:
-  portal:
-    "midnight-lizard.org": 80
-  identity:
-    "identity.midnight-lizard.org": 80
-  schemes-querier:
-    "schemes-querier.midnight-lizard.org": 80
-  schemes-commander:
-    "schemes-commander.midnight-lizard.org": 80
 annotations:
   kubernetes.io/ingress.global-static-ip-name: ml-static-ip
   ingress.kubernetes.io/rewrite-target: /
   kubernetes.io/ingress.class: "gce"
+defaultBackend:
+  serviceName: portal
+  servicePort: 80
+rules:
+  "midnight-lizard.org":
+    portal:
+      path: /*
+      port: 80
+    schemes-commander:
+      path: /schemes/commander/*
+      port: 80
+    schemes-querier:
+      path: /schemes/querier/*
+      port: 80
+    impressions-commander:
+      path: /impressions/commander/*
+      port: 80
+  "identity.midnight-lizard.org":
+    identity:
+      path: /*
+      port: 80
 tls:
   - hosts:
     - midnight-lizard.org
@@ -23,9 +31,3 @@ tls:
   - hosts:
     - identity.midnight-lizard.org
     secretName: ml-tls-cert-identity
-  - hosts:
-    - schemes-querier.midnight-lizard.org
-    secretName: ml-tls-cert-schemes-querier
-  - hosts:
-    - schemes-commander.midnight-lizard.org
-    secretName: ml-tls-cert-schemes-commander
