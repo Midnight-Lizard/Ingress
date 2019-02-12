@@ -16,10 +16,10 @@ spec:
     servicePort: {{ .Values.defaultBackend.servicePort }}
   rules:
     {{- range $host, $services := .Values.rules }}
-    {{- range $serviceName, $serviceParams := $services }}
     - host: {{ $host | quote }}
       http:
         paths:
+    {{- range $serviceName, $serviceParams := $services }}
           - path: {{ $serviceParams.path | quote }}
             backend:
               serviceName: {{ $serviceName }}
