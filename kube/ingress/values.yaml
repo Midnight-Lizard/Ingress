@@ -15,7 +15,7 @@ rules:
       path: /schemes/commander/*
       port: 80
     schemes-querier:
-      path: /schemes/querier/*
+      path: /schemes/querier
       port: 80
     impressions-commander:
       path: /impressions/commander/*
