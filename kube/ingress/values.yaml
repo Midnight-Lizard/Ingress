@@ -11,9 +11,9 @@ rules:
     portal:
       path: /*
       port: 80
-    schemes-commander:
-      path: /schemes/commander/*
-      port: 80
+    # schemes-commander:
+    #   path: /schemes/commander/*
+    #   port: 80
     schemes-querier:
       path: /schemes/querier
       port: 80
