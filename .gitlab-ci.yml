@@ -15,4 +15,5 @@ gce-deploy:
   - chmod +x ./shell/gcloud-config.sh
   - ./shell/gcloud-config.sh -k "$GCE_KEY" -z $GCE_CLUSTER_ZONE -p $GCE_PROJECT -c $GCE_CLUSTER_NAME
   - curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+  - helm init --upgrade --service-account=tiller
   - helm upgrade --install $PROJ ./kube/$PROJ
